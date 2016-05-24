@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Applikation (CHOP)</title>
+        
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+        <link rel="stylesheet" href="css/typeahead_style.css">
+        <link href="libraries-css/c3.min.css" rel="stylesheet" type="text/css">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/css/tether.min.css" rel="stylesheet">
+        <link href="libraries-css/bootstrap.min.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/g/bootstrap.material-design@0.5.9(css/ripples.min.css+css/bootstrap-material-design.min.css)">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/responsive_design_breakpoints.css">
+        <link rel="stylesheet" href="libraries-css/sidebar.css">
+        <link rel="stylesheet" href="libraries-css/introjs.min.css">
+        <link rel="stylesheet" href="libraries-css/animate.css">
+    </head>
+
+
+<body>
+    
+<!-- Modal for landscape warning - maybe to be removed -->   
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="text-align:center;">Warning</h4>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <a class="btn btn-warning btn-fab-mini"><i class="material-icons" style="display:inline-block;">warning</i></a>
+                <p>This site is quite resource heavy and may not run optimally on mobile devices with slower hardware. If you want to use a simple version of the site choose OK</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" onclick="slowHardware()" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<!-- Modal for extension warning -->     
+<div id="myModal1" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="text-align:left;">Zusätzliche Informationen und Unterklassen</h4>
+            </div>
+            <div class="modal-body" id="modal-target" style="text-align:left;">
+                <p>For the best experience change to landscape mode</p>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<!-- Modal for extension warning -->     
+<div id="myModal2" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="text-align:left;">Zusätzliche Statistiken</h4>
+            </div>
+            <div class="modal-body" style="text-align:left;">
+                            <table class="table table-striped table-hover ">
+                                
+                                          <thead>
+                                          <tr>
+                                            <th class="table-font"> </th>
+                                            <th class="table-font">0-14 Jahre</th>
+                                            <th class="table-font">14-39 Jahre</th>
+                                            <th class="table-font">15-69 Jahre</th>
+                                            <th class="table-font">70+ Jahre</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr>
+                                            <td> <a class="table-font" style="font-weight:bold; color:black;" data-toggle="tooltip" title="Anzahl Fälle">n</a></td>
+                                            <td class="nAge0 table-font"> - </td>
+                                            <td class="nAge1 table-font"> - </td>
+                                            <td class="nAge2 table-font"> - </td>
+                                            <td class="nAge3 table-font"> - </td>
+                                          </tr>
+                                          <tr>
+                                            <td> <a class="table-font" style="font-weight:bold; color:black;" data-toggle="tooltip" title="Total Durchschnittliche Aufenthaltsdauer">TDA</a></td>
+                                            <td class="daTotalAge0 table-font"> - </td>
+                                            <td class="daTotalAge1 table-font"> - </td>
+                                            <td class="daTotalAge2 table-font"> - </td>
+                                            <td class="daTotalAge3 table-font"> - </td>
+                                          </tr>
+                                          <tr>
+                                            <td> <a class="table-font" style="font-weight:bold; color:black;" data-toggle="tooltip" title="Durchschnittliche Aufenthaltsdauer">DA</a></td>
+                                            <td class="daAge0 table-font"> - </td>
+                                            <td class="daAge1 table-font"> - </td>
+                                            <td class="daAge2 table-font"> - </td>
+                                            <td class="daAge3 table-font"> - </td>
+                                          </tr>
+                                          <tr>
+                                            <td> <a class="table-font" style="font-weight:bold; color:black;" data-toggle="tooltip" title="Standardabweichung">SA</a></td>
+                                            <td class="sdAge0 table-font"> - </td>
+                                            <td class="sdAge1 table-font"> - </td>
+                                            <td class="sdAge2 table-font"> - </td>
+                                            <td class="sdAge3 table-font"> - </td>
+                                          </tr>
+                                          </tbody>
+                        </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+	<!-- top navbar -->
+   
+    <div class="navbar navbar-static navbar-fixed-top navbar-default" style="background:#012169;">
+        <div class="container-fluid">
+            
+            <div class="col-xs-2">
+            <div class="navbar-header">
+                <!-- Toggle-button -->
+                <button type="button" class="navbar-toggle toggle-left" data-toggle="sidebar" data-target=".sidebar" style="z-index:3;">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            </div>
+
+            <!-- search bar containing element -->
+            <div class="col-xs-10">
+                    <form class="navbar-form" style="text-align:center";role="search" id="searchForm">
+                      <div class="form-group" style="display:inline-block;">
+                        <div id="the-basics" style="display:inline-block;">
+                            <input data-step="8" data-intro="Es kann nach Kodes, wie auch Stichwörtern gesucht werden (beispielsweise 'Z99' oder 'Herz')" type="text" class="form-control typeahead" placeholder="Search" id="searchid" onfocus="if(this.value != '') { this.value = ''; }">
+                          </div>
+                      </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    
+    <div class="container-fluid">
+        
+        <!-- cover-page -->
+        <div class="row animated bounceInDown" id="title-container">
+                <div class="col-xs-12 no-side-padding" style="margin-bottom:0; margin-top:0px;">
+                    <div style="display:block; margin:0 auto; text-align:center; position:relative;">
+                            <div>
+                                <div class="panel panel-default" style="height:10vh; padding:0; z-index:1000; background-color:#012169;">
+                                    <div class="panel-body" style="padding:0;">
+                                        <p style="font-weight:bold; color:white; font-size:36px;">Schweizerische Operationsklassifikation (CHOP) 2014</p>
+                                    </div>
+                                </div>
+                            </div>
+                        <div style="width:100%; height:75vh; display:block; opacity:1; position:relative; background-color:white; margin-top:-20px;">
+                            <svg style="position:absolute; left:0; top:0; opacity:0.7; padding-left:10%; padding-right:10%; padding-top:0; padding-bottom:20px;" viewBox="0 0 960 600" width="100%"  height="100%" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg"><g></g><g transform="translate(480,300)"><text text-anchor="middle" transform="translate(-191,-238)rotate(-59.99999999999999)" style="font-size: 10px; font-family: Impact; fill: #e7cb94;">Operation</text><text text-anchor="middle" transform="translate(-132,-52)rotate(0)" style="font-size: 91px; font-family: Impact; fill: #5254a3;">Geburt</text><text text-anchor="middle" transform="translate(-15,-137)rotate(60)" style="font-size: 86px; font-family: Impact; fill: #6b6ecf;">zervikal</text><text text-anchor="middle" transform="translate(132,9)rotate(-30)" style="font-size: 86px; font-family: Impact; fill: #9c9ede;">Sectio</text><text text-anchor="middle" transform="translate(132,-170)rotate(30)" style="font-size: 86px; font-family: Impact; fill: #637939;">caesarea</text><text text-anchor="middle" transform="translate(93,116)rotate(0)" style="font-size: 83px; font-family: Impact; fill: #8ca252;">laparoskopisch</text><text text-anchor="middle" transform="translate(254,186)rotate(0)" style="font-size: 81px; font-family: Impact; fill: #b5cf6b;">Schädel</text><text text-anchor="middle" transform="translate(-158,178)rotate(0)" style="font-size: 67px; font-family: Impact; fill: #cedb9c;">Totalendoprothese</text><text text-anchor="middle" transform="translate(-317,-16)rotate(-60)" style="font-size: 67px; font-family: Impact; fill: #8c6d31;">Hüftgelenk</text><text text-anchor="middle" transform="translate(307,12)rotate(-60)" style="font-size: 67px; font-family: Impact; fill: #bd9e39;">Knie</text><text text-anchor="middle" transform="translate(-100,44)rotate(0)" style="font-size: 67px; font-family: Impact; fill: #e7ba52;">partiell</text><text text-anchor="middle" transform="translate(-108,233)rotate(0)" style="font-size: 59px; font-family: Impact; fill: #e7cb94;">Physiotherapie</text><text text-anchor="middle" transform="translate(-228,-172)rotate(0)" style="font-size: 55px; font-family: Impact; fill: #843c39;">Rehabilitation</text><text text-anchor="middle" transform="translate(332,-198)rotate(-30)" style="font-size: 55px; font-family: Impact; fill: #ad494a;">primär</text><text text-anchor="middle" transform="translate(245,-12)rotate(-60)" style="font-size: 49px; font-family: Impact; fill: #d6616b;">Ballons</text><text text-anchor="middle" transform="translate(-246,40)rotate(60)" style="font-size: 44px; font-family: Impact; fill: #e7969c;">Abdomen</text><text text-anchor="middle" transform="translate(100,-103)rotate(30)" style="font-size: 37px; font-family: Impact; fill: #7b4173;">Naht</text><text text-anchor="middle" transform="translate(-268,82)rotate(60)" style="font-size: 37px; font-family: Impact; fill: #a55194;">frisch</text><text text-anchor="middle" transform="translate(-305,89)rotate(60)" style="font-size: 37px; font-family: Impact; fill: #ce6dbd;">Riss</text><text text-anchor="middle" transform="translate(255,223)rotate(0)" style="font-size: 37px; font-family: Impact; fill: #de9ed6;">Kernspintomographie</text><text text-anchor="middle" transform="translate(203,-232)rotate(60)" style="font-size: 37px; font-family: Impact; fill: #393b79;">Gehirn</text><text text-anchor="middle" transform="translate(-61,-19)rotate(0)" style="font-size: 37px; font-family: Impact; fill: #5254a3;">Hirnstamm</text><text text-anchor="middle" transform="translate(124,-128)rotate(30)" style="font-size: 37px; font-family: Impact; fill: #6b6ecf;">plastisch</text><text text-anchor="middle" transform="translate(354,-11)rotate(60)" style="font-size: 37px; font-family: Impact; fill: #9c9ede;">Rekonstruktion</text><text text-anchor="middle" transform="translate(-85,263)rotate(0)" style="font-size: 29px; font-family: Impact; fill: #637939;">Transfusion</text><text text-anchor="middle" transform="translate(359,-172)rotate(-30)" style="font-size: 29px; font-family: Impact; fill: #8ca252;">kombiniert</text><text text-anchor="middle" transform="translate(-120,-134)rotate(0)" style="font-size: 29px; font-family: Impact; fill: #b5cf6b;">Komponenten</text><text text-anchor="middle" transform="translate(59,266)rotate(0)" style="font-size: 29px; font-family: Impact; fill: #cedb9c;">Kniegelenk</text><text text-anchor="middle" transform="translate(155,27)rotate(-30)" style="font-size: 29px; font-family: Impact; fill: #8c6d31;">Thorax</text><text text-anchor="middle" transform="translate(-378,224)rotate(30)" style="font-size: 20px; font-family: Impact; fill: #bd9e39;">intensivmedizinisch</text><text text-anchor="middle" transform="translate(-380,-92)rotate(-30)" style="font-size: 20px; font-family: Impact; fill: #e7ba52;">Komplexbehandlung</text><text text-anchor="middle" transform="translate(-398,-149)rotate(30)" style="font-size: 20px; font-family: Impact; fill: #e7cb94;">akustische</text><text text-anchor="middle" transform="translate(351,37)rotate(60)" style="font-size: 20px; font-family: Impact; fill: #843c39;">Emissionen</text><text text-anchor="middle" transform="translate(382,-102)rotate(0)" style="font-size: 20px; font-family: Impact; fill: #ad494a;">Befragung</text><text text-anchor="middle" transform="translate(-380,-32)rotate(-60)" style="font-size: 20px; font-family: Impact; fill: #d6616b;">Beurteilung</text><text text-anchor="middle" transform="translate(-185,-9)rotate(0)" style="font-size: 20px; font-family: Impact; fill: #e7969c;">Biopsie</text><text text-anchor="middle" transform="translate(-100,-256)rotate(-30)" style="font-size: 20px; font-family: Impact; fill: #7b4173;">Prostatektomie</text><text text-anchor="middle" transform="translate(391,-25)rotate(60)" style="font-size: 20px; font-family: Impact; fill: #a55194;">Elektroresektion</text><text text-anchor="middle" transform="translate(244,246)rotate(0)" style="font-size: 20px; font-family: Impact; fill: #ce6dbd;">Prostatagewebe</text><text text-anchor="middle" transform="translate(213,271)rotate(0)" style="font-size: 20px; font-family: Impact; fill: #de9ed6;">Crossektomie</text><text text-anchor="middle" transform="translate(-308,28)rotate(-60)" style="font-size: 20px; font-family: Impact; fill: #393b79;">Stripping</text><text text-anchor="middle" transform="translate(361,-147)rotate(-30)" style="font-size: 20px; font-family: Impact; fill: #5254a3;">saphena</text><text text-anchor="middle" transform="translate(170,-223)rotate(30)" style="font-size: 20px; font-family: Impact; fill: #6b6ecf;">magna</text><text text-anchor="middle" transform="translate(-191,-32)rotate(0)" style="font-size: 20px; font-family: Impact; fill: #9c9ede;">Exzision</text><text text-anchor="middle" transform="translate(-417,-12)rotate(-60)" style="font-size: 20px; font-family: Impact; fill: #637939;">Destruktion</text><text text-anchor="middle" transform="translate(31,-191)rotate(60)" style="font-size: 20px; font-family: Impact; fill: #8ca252;">Läsion</text><text text-anchor="middle" transform="translate(-346,112)rotate(30)" style="font-size: 20px; font-family: Impact; fill: #b5cf6b;">Gewebe</text><text text-anchor="middle" transform="translate(400,124)rotate(30)" style="font-size: 20px; font-family: Impact; fill: #cedb9c;">Harnblase</text><text text-anchor="middle" transform="translate(429,-5)rotate(60)" style="font-size: 20px; font-family: Impact; fill: #8c6d31;">Resektion</text><text text-anchor="middle" transform="translate(145,-250)rotate(-60)" style="font-size: 10px; font-family: Impact; fill: #bd9e39;">koronar</text><text text-anchor="middle" transform="translate(-105,55)rotate(0)" style="font-size: 10px; font-family: Impact; fill: #e7ba52;">Arteriographie</text><text text-anchor="middle" transform="translate(205,-106)rotate(60)" style="font-size: 10px; font-family: Impact; fill: #e7cb94;">Kathetern</text><text text-anchor="middle" transform="translate(-292,27)rotate(-60)" style="font-size: 10px; font-family: Impact; fill: #843c39;">indirekt</text><text text-anchor="middle" transform="translate(424,-75)rotate(-30)" style="font-size: 10px; font-family: Impact; fill: #ad494a;">Inguinalhernie</text><text text-anchor="middle" transform="translate(-102,-121)rotate(0)" style="font-size: 10px; font-family: Impact; fill: #d6616b;">Transplantat</text><text text-anchor="middle" transform="translate(3,-74)rotate(60)" style="font-size: 10px; font-family: Impact; fill: #e7969c;">Prothese</text><text text-anchor="middle" transform="translate(-116,-160)rotate(0)" style="font-size: 10px; font-family: Impact; fill: #7b4173;">Sauerstoffanreicherung</text><text text-anchor="middle" transform="translate(13,43)rotate(-60)" style="font-size: 10px; font-family: Impact; fill: #a55194;">offen</text><text text-anchor="middle" transform="translate(290,-59)rotate(-60)" style="font-size: 10px; font-family: Impact; fill: #ce6dbd;">Reposition</text><text text-anchor="middle" transform="translate(161,41)rotate(60)" style="font-size: 10px; font-family: Impact; fill: #de9ed6;">distal</text><text text-anchor="middle" transform="translate(-278,261)rotate(-60)" style="font-size: 10px; font-family: Impact; fill: #393b79;">Radiusfraktur</text><text text-anchor="middle" transform="translate(-405,-119)rotate(0)" style="font-size: 10px; font-family: Impact; fill: #5254a3;">Knochenfixation</text><text text-anchor="middle" transform="translate(273,-231)rotate(-60)" style="font-size: 10px; font-family: Impact; fill: #6b6ecf;">mittelgradig</text><text text-anchor="middle" transform="translate(233,-88)rotate(-60)" style="font-size: 10px; font-family: Impact; fill: #9c9ede;">komplex</text><text text-anchor="middle" transform="translate(-49,-122)rotate(0)" style="font-size: 10px; font-family: Impact; fill: #637939;">intensiv</text><text text-anchor="middle" transform="translate(411,-161)rotate(-60)" style="font-size: 10px; font-family: Impact; fill: #8ca252;">Blockchemotherapie</text></g></svg>
+                        </div>
+                        
+   
+                        <div>
+                            <button onclick="javascript:introJs().setOption('showProgress', true).start();" type="button" class="animated bounceInLeft btn btn-raised btn-primary img-btns" style="bottom:120px; background-color:#012169; color:white;">
+                                Tour Starten
+                            </button>
+                        </div>
+                        <a onclick="scrollToSVG()" class="animated infinite pulse btn btn-danger btn-fab img-btns" style="bottom:90px; background-color:#97d700"><i class="material-icons">expand_more</i></a>
+                    </div>
+                </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 sidebar sidebar-left sidebar-animate no-side-padding">
+                <div style="color: #fff; font-size: 20px; font-weight: bold; line-height: 3.2em; display: flex; align-items: center; margin-bottom:10px;">
+                    
+                    <svg width=3em height=3em>
+                        <circle style="fill:#012169;" class="Dot" cx=1.5em cy=1.5em r="15"/>
+                    </svg>
+                    Applikation
+                </div>
+                <ul style="list-style:none;">
+                  <li><a class="links" href="index.html" style="font-size:20px; font-weight:normal;"><i class="material-icons" style="position:relative; bottom:3px;">home</i>    Home</a></li>
+                </ul>
+                
+                <div style="border:0 #012169 solid; border-bottom-width:4px;"></div>
+                
+                
+                <div class="button-container" style="color:#ECEFF1; font-size:20px; font-weight:bold; margin-top:10px;"><i class="material-icons" style=" position:relative;top:5px;">settings</i>  Einstellungen</div>
+                
+                
+                 <form class="button-container">
+                      <div class="btn-group-vertical btn-toggle" data-toggle="buttons">
+                          <a id="n"href="javascript:void(0)" onclick="switchToN()" class="active btn btn-raised button-padding btn-font">Anzahl Fälle</a>
+                          <a id="daTotal" href="javascript:void(0)" onclick="switchToTotalDa()" class="btn btn-raised button-padding btn-font">Aufenthaltsdauer <br> Total</a>
+                          <a id="da" href="javascript:void(0)" onclick="switchToDa()" class="btn btn-raised button-padding btn-font">Aufenthaltsdauer <br> Durchschnitt</a>
+                          <a id="sd"  onclick="switchToSd()" class="btn btn-raised button-padding btn-font">Standardabweichung <br> Afuenthaltsdauer</a>
+                    </div>
+                </form>
+                <div class="togglebutton button-container">
+                  <label>
+                    <input type="checkbox" onclick="switchTouch()"> Touchscreen
+                  </label>
+                </div>
+            </div>
+            
+            <div class="col-xs-12 no-side-padding">
+                
+                <!-- SVG and related content container -->
+                <div class="col-sm-8" style="padding-right:0;">
+                    <div data-step="1" data-intro="Hierarchische Darstellung aller CHOP. Um Unterkategorien Anzuzeigen auf einen Balken klicken. Klicken auf den Hintergrund emöglicht es eine Stufe zurückzugehen." data-position="right"id="svg-container" class="panel panel-primary no-side-padding" style="margin-top:15px;">
+                        <div class="panel-heading" style="background-color:#01579b !important;">
+                            <h3 id="graph-title" class="panel-title" style="text-align:center;">
+                                Anzahl Fälle
+                            </h3>
+                        </div>
+                        <div class="panel-body" id="viz" style="padding:0px;">
+                            <div id="legend" style="font-weight:bold; text-align:center; margin-left:30px; margin-top:20px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                               <!-- Tooltip container -->
+                  <div data-step="2" data-intro="Zeigt zusätzliche Daten zum angewählten Balken (Kode)." class="col-sm-4 col-xs-12" style="margin-top: 15px; text-align:center; left-padding:0;">
+                      <div class="panel panel-primary no-side-padding">
+                          <div class="panel-heading" style="background-color:#01579b !important;">
+                            <h3 class="panel-title" id="description-title">Panel primary</h3>
+                            <a data-step="3" data-intro="Wechsel zwischen Pie Chart und Timeseries. Ersteres zeigt die relative Aufteilung pro Altersklasse, letzteres den absoluten Verlauf mit Bezug zu den vier Altersklassen." data-position="bottom" href="javascript:void(0)" style="position:absolute; top:2px; right:14px; margin:0; padding:5px;"class="btn btn-fab-mini" onclick="switchChartType()">
+                                <i style="color:white;" id="chart-switch" class="material-icons" data-toggle="tooltip" data-placement="bottom" title="Wechsle Visualisierung">timeline</i>
+                            </a>
+                          </div>
+                          <div class="panel-body no-side-padding" id="viz1">
+                                <div id="chart" style="height:auto;"></div>
+                                <div>Jahre</div>
+                                <div class="panel-line"></div>
+                                <div data-step="4" data-intro="Zeigt an ob der ausgewählte Kode kodierbar ist." class="panel-subsection">                                        
+                                    <button class="panel-body-btn btn btn-primary btn-raised disabled" id="codeable">
+                                        Kodierbar
+                                    </button>
+                                    <div class="panel-icon-right checkbox">
+                                      <label>
+                                        <input id="checkbox" type="checkbox" disabled checked>
+                                      </label>
+                                    </div>
+                                </div>
+                                <div class="panel-line"></div>
+                                <div data-step="5" data-intro="Ermöglicht Zeigen/ Verbergen aller verfügbaren Statistiken eines Kodes" class="panel-subsection">
+                                    <button class="panel-body-btn btn btn-primary btn-raised" onclick="mobileStats()" data-toggle="collapse" data-target="#stat-table" style="background-color:#01579b;">
+                                        Mehr Statistiken
+                                    </button>
+                                    <a href="javascript:void(0)" class="panel-icon-right" style="top:13px; color: #012169;" onclick="expandStats()">
+                                        <i class="material-icons">open_in_new</i>
+                                    </a>
+                                </div>
+                                    <div id="stat-table" class="stat-table collapse">
+                                        <table class="table table-striped table-hover ">
+                                          <thead>
+                                          <tr>
+                                            <th class="table-font"> </th>
+                                            <th class="table-font">0-14 Jahre</th>
+                                            <th class="table-font">14-39 Jahre</th>
+                                            <th class="table-font">15-69 Jahre</th>
+                                            <th class="table-font">70+ Jahre</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr>
+                                            <td> <a class="table-font" style="font-weight:bold; color:black;" data-toggle="tooltip" title="Anzahl Fälle">n</a></td>
+                                            <td class="nAge0 table-font"> - </td>
+                                            <td class="nAge1 table-font"> - </td>
+                                            <td class="nAge2 table-font"> - </td>
+                                            <td class="nAge3 table-font"> - </td>
+                                          </tr>
+                                          <tr>
+                                            <td> <a class="table-font" style="font-weight:bold; color:black;" data-toggle="tooltip" title="Total Durchschnittliche Aufenthaltsdauer">TDA</a></td>
+                                            <td class="daTotalAge0 table-font"> - </td>
+                                            <td class="daTotalAge1 table-font"> - </td>
+                                            <td class="daTotalAge2 table-font"> - </td>
+                                            <td class="daTotalAge3 table-font"> - </td>
+                                          </tr>
+                                          <tr>
+                                            <td> <a class="table-font" style="font-weight:bold; color:black;" data-toggle="tooltip" title="Durchschnittliche Aufenthaltsdauer">DA</a></td>
+                                            <td class="daAge0 table-font"> - </td>
+                                            <td class="daAge1 table-font"> - </td>
+                                            <td class="daAge2 table-font"> - </td>
+                                            <td class="daAge3 table-font"> - </td>
+                                          </tr>
+                                          <tr>
+                                            <td> <a class="table-font" style="font-weight:bold; color:black;" data-toggle="tooltip" title="Standardabweichung">SA</a></td>
+                                            <td class="sdAge0 table-font"> - </td>
+                                            <td class="sdAge1 table-font"> - </td>
+                                            <td class="sdAge2 table-font"> - </td>
+                                            <td class="sdAge3 table-font"> - </td>
+                                          </tr>
+                                          </tbody>
+                                        </table>
+                                    </div>
+                                <div class="panel-line"></div>
+                                <div class="panel-subsection">
+                                    <button data-step="6" data-intro="Ermöglicht Zeigen/ Verbergen von zusätzlichen Informationen (Beispielsweise Ausnahmefälle, Besonderheiten etc.)" id="show-more-target" data-toggle="collapse" data-target="#show-more" class="panel-body-btn btn btn-primary btn-raised" style="background-color:#01579b;">
+                                        Mehr Informationen
+                                    </button>
+                                    <a data-step="7" data-intro="Lässt den Text besser lesbar in einem Popup öffnen" onclick="$('#myModal1').modal('show')" href="javascript:void(0)" class="panel-icon-right" style="top:13px; z-index:10; color:#012169;">
+                                        <i class="material-icons">open_in_new</i>
+                                    </a>
+                                </div>
+                                <div id="show-more" class="collapse" style="text-align:left; padding-left:10px;">
+                                    Keine.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+  
+<script src="libraries-js/d3.min.js"></script>
+<script src="libraries-js/c3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="libraries-js/typeahead_bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src="libraries-js/bootstrap.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/g/bootstrap.material-design@0.5.9(js/material.min.js+js/ripples.min.js)"></script>
+<script src="libraries-js/sidebar.js"></script>
+<script src="libraries-js/intro.min.js"></script>
+<script src="libraries-js/zenscroll-min.js"></script>
+<script src="js/app.js"></script>
+   
+</body>
+    
+    
+</html>
+
+

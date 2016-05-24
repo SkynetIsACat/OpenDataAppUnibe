@@ -1,0 +1,76 @@
+/* Resizes text of tooltip and svg since y-axis begins to overlap at this point */
+@media (max-width: 900px) {
+
+	text{
+		font-size: 90%;
+	}
+    .panel-body-btn {
+        left:5px;
+    }
+    .panel-icon-right{
+        right: 5%;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    text {
+        font-size: 80%;
+    }
+}
+
+/* breakpoint for tablets */
+@media (max-width: 768px) {
+    #show-more-target,
+    .panel {
+        font-size:90% !important;
+    }
+    p {
+        font-size: 70%;
+    }
+}
+@media (max-width: 766px){
+        div.col-sm-8 {
+        padding-right: 15px !important;
+    }
+    h1 {
+        font-size:220% !important;
+    }
+}
+
+
+/* breakpoint for smartphones */
+@media (max-width: 480px) {
+    .panel-body-btn {
+        left:10%;
+    }
+	text {
+		font-size: 65%;
+	}
+    
+    .button-padding {
+        font-size: 10px !important;
+    }
+    #legend{
+        font-size: 7px !important;
+        font-weight: normal;
+        top: 10px;
+    }
+    
+    h1 {
+        font-size: 220% !important;
+    }
+  
+    #searchForm input[type=text]{width:200px !important;}
+
+}
+
+@media (max-width: 370px) {
+    text {
+		font-size: 50% !important;
+	}
+    h1 {
+        font-size: 180% !important;
+    }
+    
+}

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Klassifikationssysteme im Gesundheitswesen</title>
+        
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+        <link href="libraries-css/c3.min.css" rel="stylesheet" type="text/css">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/css/tether.min.css" rel="stylesheet">
+        <link href="libraries-css/bootstrap.min.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/g/bootstrap.material-design@0.5.9(css/ripples.min.css+css/bootstrap-material-design.min.css)">
+        <link rel="stylesheet" href="libraries-css/sidebar.css">
+        <link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.0.8/angular-material.css">
+        <link rel="stylesheet" href="https://material.angularjs.org/1.0.8/docs.css">
+        <link rel="stylesheet" href="libraries-css/sidebar.css">
+        <link rel="stylesheet" href="libraries-css/animate.css">
+    </head>
+    
+    <style>
+        
+        a, a:hover, a:visited, a:link, a:active a:focus {
+            text-decoration: none !important;
+            border-bottom: 0px; 
+            outline: 0 !important;
+        }
+        
+        .list-color {
+            color: white !important;
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .navbar-form input, .form-inline input {
+            width:auto;
+        }
+
+        header {
+            height:280px;
+        }
+
+        #nav.affix {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index:10;
+        }
+        #sidebar.affix-top {
+            position: fixed;
+        }
+
+        #sidebar.affix {
+            position: fixed;
+            top: 80px;
+        }
+        
+        @media (max-width: 1200px) {
+            #chop-info {
+                margin-left: 50px;
+                margin-top: 50px !important; 
+            }       
+        }
+        
+        @media (max-width: 480px) {
+            h3 {
+                padding-top: 5px;
+                
+                font-size: 120% !important;
+            }
+            h1 {
+                font-size: 200% !important;
+            }
+            .panel-style {
+                margin-left: 5% !important;
+                margin-right: 5% !important;
+            }
+            .paragraph {
+               font-size: 105% !important;
+            }
+
+
+        }
+        
+        @media( max-width:996px ) {
+            .about {
+                margin-left: 5% !important;
+                margin-right: 5% !important;
+            }
+        }
+        
+        .tab-content {
+            
+            margin: 20px 0 0 0;
+            text-align:center;
+        }
+
+        .tab-container {
+            height:auto;
+        }
+
+        .tab-change-row {
+            text-align:center;
+        }
+
+        .tab-change-btn {
+            display: inline-block;
+        }
+        
+        md-tabs-canvas {
+            background-color: #97D700;
+        }
+        md-ink-bar {
+            color: white;
+            background-color: #012169 !important;
+        }
+        
+        md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+            min-height:500px;
+        }
+
+        .text-header {
+            margin:0;
+            border-bottom: solid #97D700; 
+            border-bottom-width: 4px;
+            position:relative; 
+            float:left;
+        }
+        
+        .content-text {
+            padding-left:50px;
+            padding-top:20px;
+             
+            
+            color:#012169;
+        }
+                
+        .panel-style {
+            padding: 0 !important;
+            margin-left:50px;
+            margin-top:20px !important;
+            margin-right:50px;
+            margin-bottom: 20px !important;
+        }
+        
+        .paragraph {
+            font-size: 20px;
+            font-weight: 200;
+            position:relative;
+            padding-bottom: 25px;
+        }
+        
+        .scroll-down-fab {
+            position:absolute !important; 
+            bottom:-30px !important; 
+            right:10% !important;
+            background-color: #97D700 !important;
+        }
+        
+        .down {
+            color: white;
+        }
+        .header-color {
+            background-color: #012169 !important;
+            color:white !important;
+            font-weight: bold !important;
+        }
+        
+        div {
+            max-width: 100vw !important;
+        }
+        
+        .line {
+            border: 0 #012169 solid;
+            border-bottom-width: 2px;
+            margin-top: 3px;
+
+        }
+        
+        
+        
+    </style>
+    
+
+    <body>
+    <header class="masthead" style="background-color:white; width:100%; position:relative;">
+                        <div class="animated fadeInDownBig" style="position:absolute; top: 40px; left:5%; width:40%;">
+                    <svg width="100%" height="25" viewbox="0 0 400 25" preserveAspectRatio="none">
+                        <rect width="400" height="25" style="fill:#012169;" />
+                    </svg>
+                </div>
+                <div class="animated fadeInUpBig" style="position:absolute; bottom: 40px; left:5%; width:40%;">
+                    <svg width="100%" height="25" viewbox="0 0 400 25" preserveAspectRatio="none">
+                        <rect width="400" height="25" style="fill:#97D700;" />
+                    </svg>
+                </div>
+                
+                <div class="animated fadeInDownBig" style="position:absolute; top: 40px; right:5%; width:40%;">
+                    <svg width="100%" height="25" viewbox="0 0 400 25" preserveAspectRatio="none">
+                        <rect width="400" height="25" style="fill:#97D700;" />
+                    </svg>
+                </div>
+                <div class="animated fadeInUpBig" style="position:absolute; bottom: 40px; right:5%; width:40%;">
+                    <svg width="100%" height="25" viewbox="0 0 400 25" preserveAspectRatio="none">
+                        <rect width="400" height="25" style="fill:#012169;" />
+                    </svg>
+                </div>
+      <div class="container">
+        <div class="row">
+            <div style="text-align:center;">
+                
+                <h1 style="margin-top:100px; font-weight:bold; color:#012169; z-index:1000; position:relative; font-size:50px;"> Klassifikationssysteme im <br> Gesundheitswesen </h1>
+            </div>
+        </div>
+      </div>
+    </header>
+        
+    <div id="nav">  
+        <div class="navbar navbar-static  navbar-default" style="background-color:#012169;">
+            <div class="container">
+
+                <div class="navbar-header" style="position:absolute; left:0;">
+                    <!-- Toggle-button -->
+                    <button type="button" class="navbar-toggle toggle-left hidden-md hidden-lg" data-toggle="sidebar" data-target=".sidebar" style="z-index:3;">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div style="text-align:center; margin-top:12px;">
+                    <h3 style="color:white;">Open Data App - Universität Bern</h3>
+                </div>
+
+            </div>
+        </div>  
+    </div>
+        
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div id="side" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 sidebar sidebar-left sidebar-animate no-side-padding sidebar-md-show sidebar-lg-show" style="margin-top:279px; background-color:#97D700; color:white;">
+                
+                <div style="color: #fff; font-size: 20px; font-weight: bold; line-height: 3.2em; display: flex; align-items: center;">
+                    
+                    <svg class="animated rollIn" width=3em height=3em>
+                        <circle style="fill:#012169;" class="Dot" cx=1.5em cy=1.5em r="15"/>
+                    </svg>
+                    Home
+                </div>
+                
+                <ul style="list-style:none;">
+                    <li class="list-color" style="margin-bottom:15px;"> <a class="list-color" href="app.html"><i class="material-icons">insert_chart</i>  Applikation</a> </li>
+                    <div class="line" style="margin-right:-15px; margin-left:-15px; border-bottom-width:4px;"></div>
+                    <li class="list-color"> <a class="list-color" href="javascript:void(0)" onclick="toWelcome()">Willkommen</a> </li>
+                    
+                    <li class="list-color"> <a class="list-color" href="javascript:void(0)" onclick="toProjekt()">Projekt</a> </li>
+                    
+                    <li class="list-color"> <a class="list-color" href="javascript:void(0)" onclick="toDatenquellen()">Daten</a> </li>
+                    
+                        <ul style="list-style:none; margin-left:1em;">
+                            <li class="list-color"> <a class="list-color" href="javascript:void(0)" onclick="toChop()">CHOP</a> </li>
+                        </ul>
+                    
+                    <li class="list-color"> <a onclick="toTop10()" class="list-color" href="javascript:void(0)">Diagramme</a> </li>
+                    
+                        <ul style="list-style:none; margin-left:1em;">
+                            <li class="list-color"> <a class="list-color" href="javascript:void(0)" onclick="toTop10()">Top 10</a> </li>
+                        </ul>
+                        <ul style="list-style:none; margin-left:1em;">
+                            <li class="list-color"> <a class="list-color" href="javascript:void(0)" onclick="toHist()">Histogramm</a> </li>
+                        </ul>
+                    
+                    <li class="list-color"> <a onclick="toAbout()" class="list-color" href="javascript:void(0)">Über Uns</a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row" style="padding:0; max-width:100vw;">
+            <div id="main" class="col-lg-10 col-md-9 col-lg-offset-2 col-md-offset-3" style="text-align:center; padding:0; margin-top:-20px; background-color:#eceff1;">
+                
+                
+                    
+                <div style="display:inline-block; text-align:left;">
+                    
+                    <div id="welcome" style="max-width:100vw;">
+                    <div class="text-header animated fadeInLeftBig">
+                        <h2 class="content-text">
+                            Willkommen
+                        </h2>
+                    </div>
+                    <div style="clear:both;"></div>
+                    
+                    <div class="panel panel-default panel-style animated fadeInUpBig">
+                        <div class="panel-body paragraph">
+                            <div>
+                            Willkommen auf unserer Web-Applikationsseite. Im Rahmen der Open-Data Veranstaltung des Instituts für Wirtschaftsinformatik der Universität Bern haben wir diese App zur Visualisierung der Schweizer Operationsklassifikation (CHOP) entwickelt.
+                            Die App erlaubt es die über 20'000 Kodes, nach unterschiedlichen statistischen Eigenschaften sortiert, hierarchisch darzustellen und zu durchsuchen.</div>
+                            
+                            <div style="text-align:center">
+                                <div>
+                                    <img src="img/preview.png" width="70%" style="margin-top:15px; margin-bottom:15px;">
+                                </div>
+                                <a href="app.html" style="color:#012169; background-color:#97D700; width:250px; margin-bottom:20px;" class="btn btn-raised btn-lg animated pulse infinite"> >> Direkt zur App << </a>
+                                <a onclick="toProjekt()" class="btn btn-default btn-fab scroll-down-fab"><i class="material-icons down" >expand_more</i></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div id="projekt">
+                    <div class="text-header">
+                        <h2 class="content-text">
+                            Projekt Info
+                        </h2>
+                    </div>
+                    <div style="clear:both;"></div>
+                    
+                    <div class="panel panel-default panel-style">
+                        <div class="panel-body paragraph">
+                            Das Ziel dieser Arbeit war es in Einer- oder Zweierteams und mithilfe eines Datencoaches einen (öffentlichen) Datensatz zu wählen und diesen nach bestimmten Vorgaben mit d3.js zu visualisieren. Wir haben uns jeweils für Zweiters entschieden. Dabei haben wir uns für den Projektvorschlag von Herrn Michael Fichter von Deloitte entschieden, das Schweizer Operationsklassifikationssystem zu visualisieren.
+                            <a onclick="toDatenquellen()" class="btn btn-primary btn-fab scroll-down-fab"><i class="material-icons down">expand_more</i></a>
+                        </div>
+                    </div>  
+                    </div>
+                    
+                    <div id="datenquellen">
+                    <div class="text-header">
+                        <h2 class="content-text">
+                            Daten
+                        </h2>
+                    </div>
+                    <div style="clear:both;"></div>
+                    
+                    <div class="row" style="padding:0; margin:0;">
+                    <div class="col-lg-7" style="padding:0">
+                        <div class="panel panel-default panel-style">
+                            <div class="panel-body paragraph">
+                                Bei den visualisierten Daten handelt es sich um öffentlich zugänglichen Datensätze des BFS zur 
+                                <a style="text-decoration:none;" href="http://www.bfs.admin.ch/bfs/portal/de/index/themen/14/04/01/data/01/05.html" target="_blank">
+                                    Schweizerischen Operationsklassifikation (CHOP)</a> 
+                                und <a href="http://www.bfs.admin.ch/bfs/portal/de/index/infothek/nomenklaturen/blank/blank/chop/02/05.html" target="_blank">Medizinischen Statistik der Krankenhäuser</a>, beide aus dem Jahr 2014. <br>
+                                Die statistischen Informationen wiederspiegeln Daten der stationären Grundversorgung aller Schweizer Krankenhäuser und Kliniken. <br>
+                                Inkludiert haben wir dabei die Anzahl Fälle (<strong>n</strong>), durchschnittliche Aufenthaltsdauer (<strong>DAD</strong>), Standardabweichung (<strong>SD</strong>) und eine meta Variable totale Aufenthaltsdauer (<strong>TAD</strong>). TAD kombiniert die Anzahl Fälle mit der durchschnittlichen Aufenthaltsdauer (<strong>TAD = n x DAD</strong>) und zeigt somit, welche Behandlungen insgesamt am meisten stationäre Zeit verbraucht haben.<br>
+                                <i>(Beachte: Alle Zahlen beziehen sich auf das Jahr 2014).</i>
+
+                                <a onclick="toChop()" class="btn btn-default btn-fab scroll-down-fab"><i class="material-icons down">expand_more</i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chop" class="col-lg-5" style="padding:0;">
+                        <div id="chop-info" class="panel panel-default" style="margin-top:20px; margin-bottom:20px; margin-right:50px;">
+                            <div class="panel-heading header-color">CHOP <i style="position:relative; top:5px;"class="material-icons">info_outline</i></div>
+                            <div class="panel-body paragraph">
+                                Die CHOP ist ein hierarchisch aufgebautes System mit über 20'000 Kategorien, das alle Behandlungen/ Operationen umfasst und die entsprechende Kodierung ermöglicht. Anhand von Kodierungen werden schlussendlich die Primärdienstleister (Spitäler, Kliniken etc.) über das Swiss DRG System pauschal vergütet.
+                                <br><br>
+                                Ursprünglich entstammt die CHOP dem amerikanischen <a href="http://www.cdc.gov/nchs/icd/icd9cm.htm" target="_blank">ICD-9-CM</a> wurde aber seitdem wiederholt überarbeitet und an die lokalen Begebenheiten angepasst.
+
+                                <a onclick="toTop10()" class="btn btn-default btn-fab scroll-down-fab"><i class="material-icons down">expand_more</i></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    
+                    <div id="top-10">
+                    <div class="text-header">
+                        <h2 class="content-text">
+                            Diagramme
+                        </h2>
+                    </div>
+                    <div style="clear:both;"></div>
+                        
+                    <div class="panel panel-default panel-style">
+                        <div class="panel-body paragraph" style="margin:0; padding:0;">
+                    <div ng-app="material" style="width:100% color:white;">
+                        <div class="tab-container">
+                            <div id="svgwrap">
+                                
+                            <md-tabs md-selected="selectedTab">
+                                <md-tab label="Anzahl Fälle (n)" onclick="reDrawChart()">
+                                    <div class="tab-content">
+                                        <div id="chart" class="title-image" style="height:400px; min-width:500px;"></div>
+                                    </div>
+                                </md-tab>
+                                
+                                <md-tab label="Totale Aufenthalsdauer (TAD)" onclick="reDrawChartTAD()">
+                                    <div class="tab-content">
+                                        <div id="chartTAD" class="title-image" style="height:400px; min-width:500px;"></div>
+                                    </div>
+                                </md-tab>
+                            
+                                <md-tab label="Durchschnittliche Aufenthaltsdauer (DAD)" onclick="reDrawChartDA()">
+                                    <div class="tab-content">
+                                        <div id="chartDA" class="title-image" style="height:400px; min-width:500px;"></div>
+                                    </div>
+                                </md-tab>
+                                
+                                <md-tab label="Standardabweichung (SD)" onclick="reDrawChartSD()">
+                                    <div class="tab-content">
+                                        <div id="chartSD" class="title-image" style="height:400px; min-width:500px;"></div>
+                                    </div>
+                                </md-tab>
+                                
+                            </md-tabs>      
+                        </div>
+                        </div>
+                    </div>
+                        <a onclick="toInfo()" class="btn btn-default btn-fab scroll-down-fab"><i class="material-icons down">expand_more</i></a>
+                        </div>
+                    </div>
+                        
+                    <div class="panel panel-default panel-style">
+                        <div id="info" class="panel-body paragraph">
+                            Die Grafiken verdeutlichen die zehn häufigsten Kodes anhand der jeweiligen Kategorie. <br>
+                            Vergleicht man die Anzahl Fälle mit der Total Verursachten Aufenthaltsdauer, ist sofort ersichtlich, dass die häufigsten Fälle nicht zwingendermassen am meisten Aufwand und damit verbundene Kosten verursachen. So ist beispielsweise die Rehabilitation nicht die Häufigste Behandlung, wohl aber die Zeitaufändigste.
+                            <br> <br>
+                            Bei der Durschnittlichen Aufenthaltsdauer gibt es Behandlungen, die im Schnitt beinahe ein Jahr in Anspruch nehmen.
+                            Dabei sollte allerdings beachtet werden, dass die Statistik bei so langer Aufenthaltsdauer etwas verfälscht sein kann, da die Daten nur ein Jahr erfassen und daher Aufenhalte, die länger als ein Jahr dauern, nicht korrekt abgebildet werden.
+                            <a onclick="toHist()" class="btn btn-default btn-fab scroll-down-fab"><i class="material-icons down">expand_more</i></a>
+                            <br><br>
+                            Die Standardabweichung zeigt Fälle, bei welchen die damit einhergehnde Aufenthaltsdauer nur schwer einzuschätzen ist. Möglicherweise sind solche Behandlungen etwas weniger effektiv oder wirken sehr subjektbezogen, schlussendlich ist dies aber schwer zu interpretieren und muss nicht unbedingt zutreffen.
+                        </div>
+                    </div>
+                        
+                    <div id="hist" class="panel panel-default panel-style">
+                        <div class="panel-body paragraph">
+                            
+                            <img src="img/Hist1.svg" width="100%">
+                            An der Verteilung der Anzahl Fälle pro Kode sieht man, dass die meisten (>40%) eine sehr geringe Fallzahl aufweisen. Dabei weist rund 1/3 gar keine Fälle auf. Diese Zahlen werfen die Frage nach der Effizenz dieses Klassifikationssystems auf, obwohl hier natürlich nur ein Jahr berücksichtigt wurde. Unsere Beobachtungen zur Schweizerischen Operationsklassifikation (CHOP) scheinen den allgemeinen Zustand der schweizerischen Gesundheitsversorgung zu wiederspiegeln. In diesem Sinne will der <a href="https://www.news.admin.ch/message/index.html?lang=de&msg-id=61615" target="_blank"> Bund </a>in naher Zukunft medizinische Leistungen und Gesundheitstechnologien systematisch auf Ihre Effizienz hin untersuchen, worunter natürlich auch die CHOP fällt.
+                            <a onclick="toAbout()" class="btn btn-primary btn-fab scroll-down-fab"><i class="material-icons down">expand_more</i></a>
+                        </div>
+                    </div> 
+                        
+                    </div>
+                    
+                    
+                    
+                    <div id="about">
+                    <div class="text-header">
+                        <h2 class="content-text">
+                            Über Uns
+                        </h2>
+                    </div>
+                    <div style="clear:both;"></div>
+                    
+                             <div class="row" style="padding:0; margin:0;">
+                                 <div class="col-sm-6" style="padding:0;">
+                                     <div class="panel panel-default panel-style about" style="margin-right:25px;">
+                                          <div class="panel-heading" style="background-color:#012169; color:white;">
+                                            <h3 class="panel-title">Laetitia Auderset</h3>
+                                          </div>
+                                          <div class="panel-body paragraph" style="text-align:center;">
+                                              <div style="text-align:center;">
+                                                    <img src="img/laetitia.png" style="margin-top:15px; margin-bottom:15px; width:83%; max-width:300px;">
+                                    
+                                              </div>
+                                              <div>
+                                                Bachelor Studentin BWL
+                                                <br>
+                                                <a  href="mailto:example@tutorialspark.com" style="color:#012169;"><i class="material-icons" style="font-size:36px;">email</i> lau.opendata@gmail.com </a>
+                                              </div>
+                                          </div>
+                                    </div>
+                                    
+                                 </div>
+                                 <div class="col-sm-6" style="padding:0;">
+                                    <div class="panel panel-default about" style="margin-left:25px; margin-top:20px; margin-bottom:20px; margin-right:50px;">
+                                          <div class="panel-heading" style="background-color:#012169; color:white;">
+                                            <h3 class="panel-title">Narayan Schütz</h3>
+                                          </div>
+                                          <div class="panel-body paragraph" style="text-align:center;">
+                                                
+                                              <div style="text-align:center;">
+                                                    <img src="img/ns.jpg" style="margin-top:15px; margin-bottom:15px; width:80%; max-width:300px; height:auto;">
+                                              </div>
+                                              <div>
+                                                Master Student Bioinformatik
+                                                <br>
+                                                <a  class="mail" href="mailto:example@tutorialspark.com" style="color:#012169;"><i class="material-icons" style="font-size:36px;">email</i> nsc.opendata@gmail.com </a>
+                                              </div>
+                                          </div>
+                                    </div>
+                                 </div>
+                            </div>
+                    </div>
+                    
+
+              
+            </div>
+                
+        </div>
+    </div>
+
+    </div>
+        
+    
+        
+        <script src="libraries-js/d3.min.js"></script>
+        <script src="libraries-js/c3.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="libraries-js/bootstrap.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/g/bootstrap.material-design@0.5.9(js/material.min.js+js/ripples.min.js)"></script>
+        <script src="libraries-js/sidebar.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+        <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.0.8/angular-material.js"></script>
+        <script src="libraries-js/zenscroll-min.js"></script>
+        
+        <script>
+            angular.module("material", ["ngMaterial", "ngAnimate"])
+            $(document).ready(function () {
+                is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+                is_explorer = navigator.userAgent.indexOf('MSIE') > -1;
+                is_firefox = navigator.userAgent.indexOf('Firefox') > -1;
+                is_safari = navigator.userAgent.indexOf("Safari") > -1;
+                is_opera = navigator.userAgent.indexOf("Presto") > -1;
+                is_mac = (navigator.userAgent.indexOf('Mac OS') != -1);
+                is_windows = !is_mac;
+
+                if (is_chrome && is_safari){
+                  is_safari=false;
+                }
+
+                if (is_safari || is_windows){
+                  $('#side').css('-webkit-text-stroke', '0.7px');
+                }
+
+
+              });
+            
+            $('#nav').affix({
+                  offset: {
+                    top: $('header').height()
+                  }
+            });	
+
+            
+             $(document).bind("scroll", function(){    
+                if ($(document).scrollTop() <= 279){
+                    d3.select("#side").style("margin-top", 279 - $(document).scrollTop() + "px");
+                    d3.select("body").style("margin-top", 0)
+                }
+                else {
+                    d3.select("#side").style("margin-top", "-1px");
+                    d3.select("body").style("margin-top", "65px")
+                }
+            });
+            
+
+            var welcome = document.getElementById("welcome");
+            var projekt = document.getElementById("projekt");
+            var datenquellen = document.getElementById("datenquellen");
+            var chop = document.getElementById("chop");
+            var top10 = document.getElementById("top-10");
+            var about = document.getElementById("about");
+            var hist = document.getElementById("hist");
+            var info = document.getElementById("info");
+            
+            
+            function toWelcome(){
+                zenscroll.center(welcome, 500, 300);
+                
+            }
+            
+            function toProjekt() {
+                zenscroll.center(projekt, 500, 300);
+                //zenscroll.toY(939);
+            }
+            
+            function toDatenquellen() {
+                zenscroll.center(datenquellen, 500, 300);
+                //zenscroll.toY(1295);
+            }
+            function toChop() {
+                zenscroll.center(chop);       
+            }
+            function toTop10() {
+                zenscroll.center(top10, 500, 300);
+                //zenscroll.toY(2121);
+            }
+            function toAbout() {
+                zenscroll.center(about, 500, 300);
+            }
+            function toHist() {
+                zenscroll.center(hist, 500, 300);
+            }
+            function toInfo() {
+                zenscroll.center(info,500,300);
+            }
+            $.material.init();
+            
+            function reDrawChart() {
+                
+                setTimeout( function() {
+                    d3.select("#wrapsvg").selectAll("svg").remove();
+                    var chart = c3.generate({
+                        data: {
+                            x : 'x',
+                            columns: [
+                                ['x',"Sonstige manuell unterstützte Geburt", "Computertomographie des Schädels", "Totalendoprothese des Hüftgelenks, sonstige","Meniskektomie am Knie, arthroskopisch, partiell","Rehabilitation, n.a.klass.","Tiefe zervikale Sectio caesarea, primär","Laparoskopische Cholezystektomie","Tiefe zervikale Sectio caesarea, sekundär","Koronarangioplastik [PTCA], mit Ballons, sonstige","Laparoskopische Appendektomie","Computertomographie gesamtes Abdomen"],
+                                ['Anzahl Fälle', 27342, 22257, 17679, 17408 ,13966, 13332, 12783, 12608, 12316, 10421, 10390],
+
+                            ],
+                            type: 'bar'
+                        },
+                        axis: {
+                            rotated: true,
+                            x: {
+                                type: 'category',
+                                tick: {
+                                    rotate: 75,
+                                    multiline: false
+                                },
+                                height: 130
+                            }
+                        }
+                    });
+                           },5);   
+            }
+            
+            function reDrawChartTAD() {
+                
+                setTimeout( function() {
+                    d3.select("#wrapsvg").selectAll("svg").remove();
+                    var chart1 = c3.generate({
+                        bindto: '#chartTAD',
+                        data: {
+                            x : 'x',
+                            columns: [
+                                ['x',"Rehabilitation, n.a.klass.", "Kombinierte Physiotherapie, ohne Auflistung der Komponenten, n.n.bez.", "Totalendoprothese des Hüftgelenks, sonstige", "Computertomographie des Schädels", "Sonstige Physiotherapie, sonstige", "Sonstige manuell unterstützte Geburt", "Verhaltenstherapie", "Aufwändige Diagnostik bei psychiatrischen und psychosomatischen Störungen","Mindestens 14 Behandlungstage und 20 Therapieeinheiten","Krisenintervention"],
+                                ['Totale Aufenthaltsdauer (Tage)', 305777, 196220, 166293, 151495, 130480, 128939, 114303, 102827, 99216, 98160],
+
+                            ],
+                            type: 'bar'
+                        },
+                        axis: {
+                            rotated: true,
+                            x: {
+                                type: 'category',
+                                tick: {
+                                    rotate: 75,
+                                    multiline: false
+                                },
+                                height: 130
+                            }
+                        }
+                    });
+                           },0);   
+            }
+            
+            
+            function reDrawChartSD() {
+                
+                setTimeout( function() {
+                    d3.select("#wrapsvg").selectAll("svg").remove();
+                    var chart2 = c3.generate({
+                        bindto: '#chartSD',
+                        data: {
+                            x : 'x',
+                            columns: [
+                                ['x',"Musiktherapie","Verschluss einer anderen Harnblasenfistel, sonstige","Großflächiges Vollhauttransplantat an das Gesäß","Reparatur von herzunterstützendem System, sonstige","Oberarm-Amputation","Beschäftigungstherapie","Knochentransplantation an den Schädel, sonstige","Nicht-instrumentelle Diagnostik fazio-oraler, artikulatorischer und stimmlicher Funktionen","Anwendung einer minimalisierten Herz-Lungen-Maschine: Dauer der Behandlung bis unter 48 Stunden","Zystomanometrie"],
+                                ['Standardabweichung (Tage)', 174, 145, 128, 118, 109,96,93,90,82, 81],
+
+                            ],
+                            type: 'bar'
+                        },
+                        axis: {
+                            rotated: true,
+                            x: {
+                                type: 'category',
+                                tick: {
+                                    rotate: 75,
+                                    multiline: false
+                                },
+                                height: 130
+                            }
+                        }
+                    });
+                           },0);   
+            }
+            
+            function reDrawChartDA() {
+                
+                setTimeout( function() {
+                    d3.select("#wrapsvg").selectAll("svg").remove();
+                    var chart3 = c3.generate({
+                        bindto: '#chartDA',
+                        data: {
+                            x : 'x',
+                            columns: [
+                                ['x',"Beschäftigungstherapie", "Intensivmedizinische Komplexbehandlung im Kindesalter", "(Partielle) Pharyngektomie, sonstige","Intensivmedizinische Komplexbehandlung","Intensivmedizinische Komplexbehandlung im Kindesalter (Basisprozedur)","Transfusion von Thrombozytenkonzentrat, 37  bis 42 Konzentrate","Musiktherapie","Transfusion von Nabelschnurblutstammzellen allogen unverwandt","Transfusion von Nabelschnurblutstammzellen, allogen, Fremdbezug","Intensivmedizinische Komplexbehandlung, 7361 bis 9200 Aufwandspunkte"],
+                                ['Durchschnittliche Aufenthaltsdauer (Tage)', 337, 335, 235, 222, 175, 164, 157, 150, 143, 138],
+                            ],
+                            type: 'bar'
+                        },
+                        axis: {
+                            rotated: true,
+                            x: {
+                                type: 'category',
+                                tick: {
+                                    rotate: 75,
+                                    multiline: false
+                                },
+                                height: 130
+                            }
+                        }
+                    });
+                           },0);   
+            }
+            
+            reDrawChart();
+       
+            
+        </script>
+    </body>
+    
+    
+</html>

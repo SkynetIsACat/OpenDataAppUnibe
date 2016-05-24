@@ -1,0 +1,242 @@
+/* maybe helps mobile performance slightly */
+html {
+    text-rendering: optimizeLegibility;
+}
+svg {
+     -webkit-transform: translateZ(0);
+}
+
+.show-more, .collapse {
+    -webkit-transform: translateZ(0);
+}
+
+
+
+/* Selects all text Elements */
+text {
+    font: 12px;
+    font-weight: bold;
+}
+
+
+
+/* Defines style of the SVG elemnts*/
+    .axis {
+      shape-rendering: crispEdges;
+    }
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+    }
+
+
+/* Removes padding from bootstrap cols */
+.no-left-padding {
+        padding-left: 0 !important;
+    }
+
+
+
+/* Define style of tooltip */
+    #tooltip {    
+            display: inline-block;
+            margin: 10px;
+              padding: 8px 12px;
+              background-color: steelblue;
+			  -webkit-border-radius: 3px;
+     		  -moz-border-radius: 3px;
+          	  border-radius: 3px;
+			  text-align: left;
+			  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  			  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  			  box-shadow:         3px 3px 5px 6px #ccc;
+			  color: white;
+    }
+
+
+
+
+
+
+
+/* Navbar related styles */
+    /* Positions body below navbar */
+    body {
+      padding-top: 49px;  
+    }
+    /* embeds search-form properly in nav */
+    .navbar .navbar-form{
+        padding: 0 15px;
+        border: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    /* makes sure search input form resizes properly on col-lg */
+    #searchForm input[type=text]{width:450px !important;}
+
+
+
+/* styles of switch radio buttons */
+    .btn-group {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    .button-padding {
+        padding-right: 8px;
+        padding-left: 8px;
+}
+
+
+/* d3-tip styles */
+    .d3-tip {
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 2px;
+    }
+
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+
+    /* Style northward tooltips differently */
+    .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+    }
+
+/* Sticky scroll button styles */
+.back-to-top {
+    background: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+    color: #ffffff;
+    background-color: #ff9000;
+}
+.no-side-padding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+
+.panel-line {
+      border:0 #CFD8DC solid;
+      border-bottom-width:1px;
+    }
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-transition: height 0.35s ease 1s linear;
+  -moz-transition: height 0.35s ease 1s linear;
+  -o-transition: height 0.35s ease 1s linear;
+  -ms-transition: height 0.35s ease 1s linear;
+  transition: height 0.35s ease 1s linear;
+  -webkit-transition: height 0.35s ease;
+  transition: height 0.35s ease;
+}
+
+/* Sidebar styles */
+.sidebar {
+    
+    top:0 !important;
+    left:0 !important;
+  padding-top: 60px;
+  background-color: #97D700;
+    border: 0 blue solid;
+  border-right: 1px;
+    z-index: 3;
+}
+.button-container {
+    text-align: center;
+    background-color: #97D700;
+    width: auto;
+}
+
+    /* -webkit-box-shadow: inset 0px 27px 73px -39px rgba(0,0,0,0.38);
+-moz-box-shadow: inset 0px 27px 73px -39px rgba(0,0,0,0.38);
+box-shadow: inset 0px 27px 73px -39px rgba(0,0,0,0.38); */
+
+
+
+    #sidebar .nav {
+      width: 95%;
+    }
+    #sidebar li {
+      border:0 #CFD8DC solid;
+      border-bottom-width:1px;
+    }
+    a.links, a.active{
+        font-weight: bold;
+        color: white !important;
+    }
+    a.links:hover {
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+.table-font {
+    font-size:12px !important;
+}
+
+.panel-title {
+    font-weight: 200;
+    color: white;
+}
+
+.panel-icon-right {
+    position:absolute;
+    right: 10%;
+    top:3px;
+}
+.panel-body-text {
+    position: absolute;
+    left: 20%;
+    top: 6px;
+}
+.panel-body-btn {
+    position: absolute;
+    left: 5%;
+    top: -3px;
+    width: 71%;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+}
+.panel-subsection {
+    height:50px;
+    position: relative;
+}
+
+.img-btns{
+    position: relative!important;
+}
+
+span.introjs-helperNumberLayer {
+    opacity: 0 !important;
+}
+
+a:hover, a:active, a:focus {
+  outline: 0 !important;
+    text-decoration: none;
+}
+
+.button-color {
+    background-color: #97d700 !important;
+}
